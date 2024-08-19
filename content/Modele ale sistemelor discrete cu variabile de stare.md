@@ -189,7 +189,8 @@ $$
 y[k] =b_2x_3[k]+b_1x_2[k]+b_0x_1[k]
 $$
 >[!info] In concluzie **modelul corespunzator  formei complet controlabile este:**
->$$\begin{cases}
+>$$
+>\begin{cases}
 x_1[k+1]=x_2[k]\\
 x_2[k+1]=x_3[k]\\
 x_3[k+1]=-a_2x_3[k]-a_1x_2[k]-a_0x_1[k]+u[k]\\
@@ -204,7 +205,8 @@ de unde prin identificarea cu forma matriceala rezulta:
 0\\0\\1
 \end{bmatrix}, C=\begin{bmatrix}
 b_0&b_1&b_2
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
 Variabilele de stare obtinute conform schemei prezentate se numesc **variabile de faza**
 
