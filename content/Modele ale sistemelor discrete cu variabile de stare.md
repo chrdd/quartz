@@ -261,14 +261,17 @@ $$
 Substituind variabilele de starea astfel definite in cele 2 ecuatii se obtin:
 $$x_1[k+1]+a_2x_1[k]+a_1x_2[k]+a_0x_3[k]=u[k] \quad \text{si} \quad y[k]=b_2x_1[k]+b_1x_2[k]+b_0x_3[k]$$
 >[!info] Din cele prezentate rezulta **modelul cu variabile de stare pentru varianta formei complet controlabile** descris de ecuatiile:
->$$\begin{cases}
+>$$
+>\begin{cases}
 x_1[k+1]=-a_2x_1[k]-a_1x_2[k]-a_0x_3[k]+u[k]\\
 x_2[k+1]=x_1[k]\\
 x_3[k+1]=x_1[k]\\
 y[k]=b_2x_1[k]+b_1x_2[k]+b_0x_3[k]
-\end{cases}$$
+\end{cases}
+$$
 >de unde prin identificare cu forma matriceala generala, vom obtine matricele:
->$$\Phi=\begin{bmatrix}
+>$$
+>\Phi=\begin{bmatrix}
 -a_2&-a_1&-a_0\\
 0&1&0\\
 0&0&1
@@ -276,7 +279,8 @@ y[k]=b_2x_1[k]+b_1x_2[k]+b_0x_3[k]
 1\\0\\0
 \end{bmatrix}, C=\begin{bmatrix}
 b_2&b_1&b_0
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
 ### Realizarea complet observabila
 Se introduce pornind de la forma complet controlabila, folosind proprietaatea de echivalenta a celor 2 realizari.
