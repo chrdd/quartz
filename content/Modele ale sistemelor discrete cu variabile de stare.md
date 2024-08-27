@@ -207,7 +207,8 @@ de unde prin identificarea cu forma matriceala rezulta:
 \end{bmatrix}, C=\begin{bmatrix}
 b_0&b_1&b_2
 \end{bmatrix}
-$$
+>$$
+
 
 Variabilele de stare obtinute conform schemei prezentate se numesc **variabile de faza**
 
@@ -281,7 +282,7 @@ y[k]=b_2x_1[k]+b_1x_2[k]+b_0x_3[k]
 \end{bmatrix}, C=\begin{bmatrix}
 b_2&b_1&b_0
 \end{bmatrix}
-$$
+>$$
 
 ### Realizarea complet observabila
 Se introduce pornind de la forma complet controlabila, folosind proprietaatea de echivalenta a celor 2 realizari.

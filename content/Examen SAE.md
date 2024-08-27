@@ -28,7 +28,7 @@ tags:
 
 ### Determinarea partii reale si imaginare
 
-
+![[SAE_Seminar5.pdf]]
 #### Pasul 1: definirea lui $z$ în funcție de $\omega$
 
 Într-un sistem discret, relația dintre $z$ și frecvența continuă $\omega$ se poate exprima astfel:
@@ -76,14 +76,30 @@ $$
 ### Curba polara
 
 ![[Curba polara]]
+![]()
+
 
 ### Locul radacinilor
+#### Formule
+1. Numarul de ramuri ale locului radacinilor $\to n$ (numarul de poli)
+2. Numarul de ramuri la infinit: $\to n-m$ (numarul de poli-numarul de zerouri)
+3. Numarul de asimptote $\to n-m$
+4. Unghiul asimptotei cu axa reala $\to \varphi_{k}= \frac{\pm180(2k+1)}{n-m}$
+5. Punctul de intalnire pe axa reala $\to\sigma_{a}= \frac{\sum\text{poli}-\sum\text{zero}}{\text{Nr. poli}-\text{Nr. zero}}$
+6. Punctele de ramificatie $\to 1+G_{d}(z)=0$, se scoate $k$,se deriveaza si se egaleaza cu $0$
+7. Locul readacinilor descrie un cerc:
+	1. Se calculeaza $G(x+yj)$
+	2. Se aplica egalitatea: $\angle G(x+yj) = 180 \degree(2k+1)$, adica $\arctan \frac{y_{\text{numitor}}}{x_{\text{numitor}}}-\arctan \frac{y_{\text{numarator}}}{x_{\text{numarator}}}= 180 \degree(2k+1)$
+
+
 ![](https://youtu.be/CRvVDoQJjYI?si=F9Q452jJG9mQuzd0)
+![](https://youtu.be/vzH0vdprs58?si=c-2rm3OFNxhi3ODY)
 ![](https://youtu.be/uSyzGsnMK28?si=NZQTeY6qqqTseVlV)
+![](https://youtu.be/K19YgVJVP54?si=Ur2oL1F_0F2Rv5C2)
 ![](https://youtu.be/zlG2sDEG5yQ?si=IQMfwv-ZYZp_IXlg)
 ![](https://youtu.be/o3bRqh4IlCA?si=2SijUOLT8xvzKF9x)
 
-![[Analiza sistemelor discrete cu metoda locului radacinilor|Curs 13 SAE]]
+![[Analiza sistemelor discrete cu metoda locului radacinilor#Reguli generale de trasare a locului rădăcinilor|Curs 13 SAE]]
 
 ### Modelul cu variabile de stare in forma complet controlabila
 ### Valoarea de regim stationar
@@ -808,6 +824,128 @@ X_{3}(t)= \frac{d^{2}X(t)}{dt^{2}}=\dot{X_{2}}(t)=-2X_{1}(t)-3X_{2}(t)+U(t)
 \end{bmatrix} \quad D =0
 \end{align}
 $$
+
+
+
+### Bilet Mada
+#### Exercitiul 1
+
+Se considera un sistem discret cu reactie negativa unitara in care partea continua are urmatoarea forma:
+
+$$G_{PC}(s)=\frac{k}{s+6}$$
+
+1. Pentru $k=1$, sa se determine functia de transfer a sistemului in circuit plecand de la ecuatia cu diferente
+2. Folosind graful de fluenta sa se determine functia de transfer a sistemului in cricuti inchis
+3. Sa se determine pentru ce tip de intrare sistemul prezinta eroare stationara finita
+4. Sa se determine raspunsul sistemului la marimea de intrare treapta unitara si sa se reprezinte grafic
+
+---
+**Rezolvare:**
+1. 
+$$
+\begin{align} & G_{0}(z)=\frac{G_{d}(z)}{1+G_{d}(z)} \\ & G_{d}(z)=Z\left\{  \frac{1-e^{-sT_{e}}}{s} \cdot  \frac{k}{s+6} \right\} = (1-z^{-1})Z\left\{ \frac{k}{s(s+6)} \right\} \\ & = \frac{z-1}{k} Z \left\{ \frac{C_{1}}{s} + \frac{C_{2}}{s+6} \right\} \\ & \begin{cases} C_{1}=\frac{k}{s+6} \bigg{|}_{s=0}=\frac{k}{6} \\ C_{2} = \frac{k}{s} \bigg{|}_{s=-6} = -\frac{k}{6} \end{cases} \\ & \implies \frac{z-1}{z} \cdot Z \left\{ \frac{\frac{k}{6}}{s}  \cdot \frac{-\frac{k}{6}}{s+6}\right\}= \frac{k}{6} \cdot \frac{z-1}{z}\cdot  Z \left\{ \underbrace{\frac{1}{s}}_{\text{trepata}}-\underbrace{\frac{1}{s+6}}_{\text{exponentiala}} \right\} \\ & = \frac{k}{6} \cdot \frac{z-1}{\cancel{z}} \left\{ \frac{\cancel{z}}{z-1} - \frac{\cancel{z}}{z-e^{-6T_{e}}} \right\} = \frac{k}{6} \cancel{(z-1)} \left\{  \frac{\cancel{z}-e^{-6T_{e}}- \cancel{z}+1}{\cancel{(z-1)}(z-e^{-6T_{e}})} \right\}  \\ &= \frac{k}{6} \cdot \frac{1-e^{-6T_{e}}}{z-e^{-6T_{e}}} \\ & \begin{cases} k=1 \\ T_{e}=0.1s \end{cases} \implies G_{d}(z) = \frac{1}{6}\cdot \frac{1-e^{-0.6}}{z-e^{-0.6}}= 0.16 \cdot \frac{1-0.55}{z-0..55}= \frac{0.07}{z-0.55} \end{align}
+$$
+	```mermaid
+
+	graph LR
+
+		R((R)) -->|1| E1((E=X1))
+
+		E1 --> X1((/))
+
+		X1 --> E2((E*=X2))
+
+		E2 -->|G| Y((Y=X3))
+
+		Y -.->|−1| E1
+
+	```
+
+$$
+\begin{align} &\begin{cases} x_{1}=R-Y=R-x_{3} \\ x_{2}=E^{*}=x_{1}^{*} \\ x_{3}=Y=G \cdot x_{2} = G \cdot x_{1}^{*} \end{cases} \\ & \begin{cases} x_{1}=R-G \cdot x_{1}^{*} \\ x_{2}=x_{1}^{*} \\ x_{3} = G \cdot x_{1}^{*} \end{cases} \\ & \begin{cases} x_{1}^{*} = R^{*} - G^{*} x_{1}^{*} \\ x_{2}^{*}=x_{1}^{*} \\ x_{3}^{*} = G^{*} \cdot x_{1}^{*} \end{cases} \end{align}
+$$
+
+
+	```mermaid
+	graph LR
+    R["R*"] -->|1| X1["X1*"]
+    X1 -->|1| X2["X2*"]
+    X2 -->|"(ERO G)"*| X3[" X3* = Y"]
+    X1 -->|"-(ERO G)"*| X1
+	```
+
+2. 
+$$ 
+\begin{align} & e_{st}^{*} = \lim_{ z \to 1 } (1-z^{-1})G(z) = \lim_{  z \to 1 } (1-z^{-1}) \frac{R(z)}{1+G(z)} \\ & R(z) = \frac{z}{z-1} \implies e_{st}^{*'} = \lim_{ z \to 1 } \cancel{\frac{z-1}{z}} \cdot \cancel{\frac{z}{z-1}} \cdot \frac{1}{1+ \frac{0.07}{z-0.05}} \\ & = \lim_{ z \to 1 } \frac{1}{\frac{z-0.05+0.07}{z-0.05}}= \lim_{ z \to 1 } \frac{1}{\frac{z+0.02}{z-0.05}}= \lim_{ z \to 1 } \frac{z-0.05}{z+0.02} =\frac{0.95}{1.02}=0.93  \\ & \implies \text{sistemul are eroare stationara la treapta}     \end{align}
+$$
+3. 
+$$
+\begin{align} & G_{0}(z)=\frac{G_{d}(z)}{1+G_{d}(z)} =\frac{\frac{0.07}{z-0.55}}{1+ \frac{0.07}{z-0.55}} = \frac{\frac{0.07}{z-0.55}}{\frac{z-0.55+0.07}{z-0.55}} \\ & = \frac{0.07}{\cancel{z-0.55}} \cdot \frac{\cancel{z-0.55}}{z-0.62} = \frac{0.07}{z-0.62} \\ & Y(z) = G_{0}(z) \cdot R(z) = \frac{0.07}{z-0.62} \cdot \frac{z}{z-1} = \frac{0.07 z}{(z-0.62)(z-1)} \\ & = \frac{0.07z}{z^{2}-1.62z+0.62} \bigg{|}z^{-2} \\ & y[k]=z^{-1}\{y(z)\} \\ & \text{se efectueaza impartirea polinomilor si rezulta} \\ & y(kT_{e})=\{0;0.07;0.11;0.14;\dots\} \end{align}
+$$
+![[Pasted image 20240618163246.png]]
+
+
+#### Exercitiul 2
+
+Se considera un sistem cu reactie negativa unitara, in care functia de transfer a sistemului in circuit deschis este de urmatoarea forma ($T_{e}=1s$):
+
+$$G_{d}(z)=\frac{0.2z+0.7}{z^{2}+0.5z+0.05}$$
+
+1. Sa se determine partea reala si partea imaginara
+2. Punctul de unde pleaca curba polara si punctul unde se termina curba polara
+3. Cum este sistemul in circuit deschis
+4. Cum este sistemul in circuit inchis
+
+#### Exercitiul 3
+
+Se considera un sistem cu reactie negativa unitara, in care functia de transfer a sistemului in circuit deschis este de urmatoarea forma ($T_{e}=1s$)
+
+$$G_{d}(z)=k \frac{0.2z+0.07}{z^{2}-0.5z+0.05}$$
+
+Determinati:
+
+1. Numarul de ramuri ale [[Analiza sistemelor discrete cu metoda locului radacinilor|locului radacinilor]], de unde incep ramurile si unde se termina
+2. Portiunea de pe axa reala care apartine locului radacinilor
+3. Numarul de asimptote, unghiul pe care-l fac cu axa reala si punctul unde se intalnesc pe axa reala
+4. Punctele de ramificatie
+5. Verificati daca locul radacinilor descrie un cerc
+
+---
+**Rezolvare:**
+1. 
+$$
+\begin{align} &\text{Pasul 1:} \\ & \begin{cases} n=2 \\ m=1 \end{cases} \implies n-m=1 \to \infty \\ \\ &z^{2} -0.5z+0.05=0 \\ & -p_{1}=0.36 \\ &-p_{2}=0.13 \\  \\ & 0.2z+0.07=0 \\ &0.2z=-0.07  \\ &z=-0.35  \end{align}
+$$
+![[Pasted image 20240619115029.png]]
+1. 
+$$
+\begin{align} & \text{Pasul 2:} \\ & \text{Portiunea de pe axa reala: }(-\infty;-0.36) \end{align}
+$$
+3. 
+$$
+\begin{align} & \text{Pasul 3} \\ &n-m=1 \implies \text{o asimptota} \\ & p_{r}=  \frac{\pm 180(2x+1)}{n-m} = \pm 180 \\ \\ \end{align}
+$$
+4. 
+$$ \text{nu avem poli/zerouri complexe}$$
+5. 
+$$
+\begin{align} & \text{Pasul 5} \\ & \text{Intersectie pe axa Im, puncte de ramificatie} \\ & 1+G(z)=0 \implies 1+ \frac{k(0.2z+0.07)}{z^{2}-0.5z+0.}=0 \\ & \implies k= - \frac{z^{2}-0.5z+0.05}{0.2z+0.05} \\ & \frac{dk}{dz}=0 \implies \frac{dk}{dz}=  \\ & \frac{-(2z-0.5)(0.27+0.05)-0.2(z^{2}-0.5z+0.05)}{(0.2z+0.05)^{2}}=0 \\ & \implies -0.6z^{2}-0.1z+0.035=0 \\ &\implies \begin{cases} z_{1}=-0.33 \\ z_{2}=0.17 \end{cases} \implies \text{punct de ramificatie}  \end{align}
+$$
+6. 
+$$
+\begin{align}& \text{Pasul 6:} \\& G(z)= \frac{0.2z+0.07}{z^{2}-0.5z+0.05}; z=x+jy \\& G(x+jy) = \frac{0.2(x+jy)+0.07}{(x+jy)^{2}-0.5(x+jy)+0.05} \\& = \frac{0.2x+2jy+0.07}{x^{2}+y^{2}+ +0.05-0.5x+j(x+y-0.5y)} \\& \angle G(z)= \arctan \underbrace{\frac{2y}{0.2x+0.07}}_{a} - \arctan \underbrace{\frac{x^{2}-y^{2}+0.05-0.5x}{2xy-0.5y}}_{b} \\& = (2k-1) \cdot 180 |\cdot \tan \\& \frac{a-b}{1+ab} = 0 \implies a=b \\&\frac{2\cancel{y}}{0.2x+0.07}= \frac{x^{2}-y^{2}+0.05-0.5x}{2x\cancel{y}-0.5 \cancel{y}} \\& 4x-1=0.2x^{3}-0.2xy^{2}+0.01x-0.1x^{2}+0.07x^{2}-0.07y^{2}+ \\&-0.03x^{2}-0.035x+0.0035 \\& 0.2x^{3}-0.2xy^{2}-0.07y^{2}-0.03x^{2}-4.035x=0.965\end{align}
+$$
+
+#### Exercitiul 4
+
+Se considera functia de transfer a unui sistem in circuit inchis:
+
+$$G_{0}(z)=\frac{0.01z+0.01}{z^{2}-1.52z+0.54}$$
+
+1. Sa se determine modelul cu variabile de stare in forma complet controlabila
+2. Plecand de la modelul cu variabille de stare (matricea sistemului) sa se determine daca sistemul este controlabil
+
+
 
 
 ### Bilet diana (bun)
@@ -1555,6 +1693,180 @@ $$G_{0}(z)=\frac{0.02z}{z^{2}-1.49z+0.54}$$
 
 ---
 
+
+
+## Exercitii
+### Bode seminar
+$$
+\begin{align}
+&\begin{cases}
+G(z)=\frac{0.36z+0.28}{(z-1)(z-0.36)} \\
+z=\frac{1+\frac{T_{e}}{2}\omega}{1-\frac{T_{e}}{2}\omega}=\frac{1+0.5\omega}{1-0.5\omega}
+\end{cases} \implies  \\
+\implies G(\omega) &= \frac{0.36\frac{1+0.5\omega}{1-0.5\omega}+0.28}{\left( \frac{1+0.5\omega}{1-0.5\omega}-1 \right)\left( \frac{1+0.5\omega}{1-0.5\omega}-0.36 \right)} \\
+& = \frac{\frac{0.36(1+0.5\omega)+0.28(1-0.5\omega)}{\cancel{1-0.5\omega}}}{\frac{(1+0.5\omega-1+0.5\omega)(1+0.5\omega-0.36(1-0.5\omega))}{(1-0.5\omega)\cancel{^{2}}}} \\
+& = \frac{(1-0.5\omega)(0.36(1+0.5\omega)+0.28(1-0.5\omega))}{\omega(1+0.5\omega-0.36+0.18\omega)} \\
+& = \frac{(1-0.5\omega)(0.36+0.18\omega+0.28-0.14\omega)}{\omega(0.64+0.68\omega)} \\
+& = \frac{(1-0.5\omega)(0.64+0.04\omega)}{\omega(0.64+0.68\omega)} \\
+& \text{avem nevoie de polii si zerourile sub forma }(1+x) \\
+& \text{astfel dam factor comun fortat }0.64 \\
+& = \frac{\cancel{0.64}(1-0.5\omega)(1+0.06\omega)}{\cancel{0.64}\omega(1+1.06\omega)} \\
+\implies G(\omega) & =  \frac{(1-0.5\omega)(1+0.06\omega)}{\omega(1+1.06\omega)} \\
+\implies G(j\omega) & = \frac{(1-0.5j\omega)(1+0.06j\omega)}{j\omega(1+1.06j\omega)} \\
+& \text{deoarece avem primul zero sub forma }(1-x) \\
+& \text{vom inmulti fractia cu conjugatul lui, adica }
+(1+0.5\omega) \\
+ & =\frac{(1-0.5j\omega)(1+0.5j\omega)(1+0.06j\omega)}{j\omega(1+1.06j\omega)(1+0.5j\omega)} \\
+& = \frac{(1+0.5^{2}\omega^{2})(1+0.06j\omega)}{j\omega(1+1.06j\omega)(1+0.5j\omega)}
+\end{align}
+$$
+
+
+
+### Exercitiul 1
+
+![[Pasted image 20240618144616.png]]
+
+$$
+\begin{align}
+& G(s)=\frac{k}{s+6} \\
+& T_{e}=0.1s
+\end{align}
+$$
+1. Pentru $R=1$ sa se determine functia de transfer a sistemului in circuit deschis:
+
+$$
+\begin{align}
+&G_{d}(z) =Z\left\{ \frac{1-e^{-sT_{e}}}{s} \cdot \frac{1}{s+6} \right\} = (1-z^{-1}) Z\left\{ \frac{1}{s(s+6)} \right\}  \\
+&= (1-z^{-1}) \cdot Z \left\{ \frac{c_{1}}{s}+\frac{c_{2}}{s+6} \right\} \\
+& \begin{cases}
+c_{1}=\frac{1}{s+6} \\
+c_{2}=\frac{1}{s}|_{s=-6} =-\frac{1}{6}
+\end{cases} \implies G_{d}(z)=\frac{z-1}{z} \cdot Z \left\{ \frac{1}{6} \cdot \frac{1}{s} - \frac{1}{6} \cdot \frac{1}{s+6} \right\} \\
+& = \frac{z-1}{z} \cdot \frac{1}{6} \left( \frac{z}{z-1}-\frac{2}{z-e^{-6T_{e}}} \right) = \frac{1}{6}\cdot \frac{z-1}{z} \cdot \frac{z^{2}-z e^{-6 T_{e}}-z^{2}+z}{(z-1)(z-e^{-6T_{e}})} \\
+&=\frac{1}{6} \frac{1}{z} \frac{z(1-e^{6T_{e}})}{z-e^{-6T_{e}}} = \frac{1}{6 }\frac{1-e^{-6T_{e}}}{z-e^{-6 T_{e}}} \\
+& T_{e}=0.1 \implies G_{d}(z)=\frac{0.17(1-0.59)}{z-0.55} = \frac{0.07}{z-0.55}
+\end{align}
+$$
+### Exercitiul 2
+Folosind graful de fluneta sa se determine functia de transfer a sistemului in circuit inchis:
+![[Pasted image 20240618155749.png]]
+ $$
+ \begin{align}
+& \begin{cases}
+x_{1}=E=R-Y=R-x_{3} \\
+x_{2}=E^{*}=x_{1}^{*} \\
+x_{3}=Y=ERO \cdot G \cdot x_{2}=ERO \cdot G \cdot x_{1}^{*}
+\end{cases} \implies \\ \\
+& \begin{cases}
+ x_{1} = R-ERO \cdot G \cdot x_{1}^{*} \\
+x_{2} = E^{*} = x_{1}^{*} \\
+X_{3} = ERO \cdot G \cdot x_{1}^{*}
+\end{cases} \\
+ \\
+& \begin{cases}
+x_{1}^{*}=R^{*}-(ERO \cdot G)^{*} \cdot x_{1}^{*} \\
+x_{2}^{*} = x_{1}^{*} \\
+x_{3}^{*} = (ERO \cdot G)^{*} \cdot x_{1}^{*}
+\end{cases}
+\end{align}
+$$
+
+Astfel, graful de fluenta devine:
+![[Pasted image 20240618160115.png]]
+Rezulta
+
+$$
+\begin{align}
+& G_{0}(z)=\frac{(ERO \cdot G(s))^{*}}{1+(ERO \cdot G(s))^{*} }\Bigg{|}_{s=\frac{1}{T_{e}}\ln(z)}=\frac{G(z)}{1+G(z)}=\frac{Z\{ERO \cdot G(s)\}}{1+Z\{ERO \cdot G(s)\}} \\
+& \frac{\frac{0.07}{z-0.55}}{1+\frac{0.07}{z-0.55}}=\frac{0.07}{z-0.55+0.07}=\frac{0.07}{z-0.48}
+\end{align}
+$$
+### Exercitiul 3
+Sa se determine pentru ce tip de intrare sistemul prezinta eroare stationara
+
+$$
+\begin{align}
+& e_{st}^{*} = \lim_{ z \to 1 }(1-z^{-1}) \cdot E(z) = \lim_{ z \to 1 }(1-z^{-1}) \frac{R(z)}{1+G(z)}   \\
+& R(z)= \frac{z}{z-1} \implies e_{st}^{*} = \lim_{ z \to 1 } \left( \frac{z-1}{z} \cdot \frac{z}{z-1} \frac{1}{1+ \frac{0.07}{z-0.55}} \right)  \\
+&= \lim_{ z \to 1 } \left( \frac{z-0.55}{z-0.55+0.07} - \frac{1-0.55}{1-0.55+0.07} \right) = \frac{0.45}{0.52} = 0.86
+\end{align}
+$$
+
+### Exercitiul 4
+Sa se reprezinte raspunsul sistemului la marimea de intrarea trepata unitara si sa se reprezinta grafic
+
+$$y(kT_{e})=Z^{-1}\{R(z)\cdot G(z)\}-Z^{-1}\{Y(z)\}$$
+
+$$
+\begin{align}
+& Y(z)=R(z)G(z)=\frac{z}{z-1} \cdot \frac{0.07}{z-0.48} = \frac{0.072}{z^{2}-1.48z+0.48} \bigg{|}\cdot z^{-2}  \\
+& \implies  Y(z^{-1})=\frac{0.072z^{-1}}{1-1.48z^{-1}+0.48z^{-2}}
+\end{align}
+$$
+
+
+![[Pasted image 20240618163204.png]]
+$$y(kT_{e})=\{0;0.07;0.1;0.12;\dots\}$$
+![[Pasted image 20240618163246.png]]
+
+### Exercitiul 5
+Folosind curba polara sa se determine valoarea lui $k$ pentru sistemul inchis este stabil
+$$G_{d}(z)=\frac{0.07k}{z-0.55}$$
+----
+
+
+$$
+\begin{align}
+& z=\frac{1+\frac{T_{e}}{2}\omega}{1-\frac{T_{e}}{2}\omega} = \frac{1+0.05\omega}{1-0.05\omega} \\
+& \implies G_{d}(\omega)= \frac{0.07k}{\frac{1+0.05\omega}{1-0.05\omega}-0.55} \\
+& = \frac{(1-0.05\omega)0.07k}{1+0.05\omega-0.55+0.02\omega} \\
+& = k \frac{0.07(1-0.05\omega)}{0.07\omega +0.45} \to \begin{cases}
+\alpha=1 \\
+n-m=0
+\end{cases} \\
+& G_{d}(j\omega)= G_{d}(\omega)\bigg|_{\omega=j\omega}=k \frac{0.07(1-0.05j\omega)}{0.07j\omega +0.45}  \\ 
+& \frac{k \cdot 0.07(0.45-0.02j\omega-0.07j\omega-0.003\omega^{2})}{0.2+0.04\omega^{2}} \\
+& Re\{G(j\omega)\} = \frac{0.07(0.45-0.03\omega^{2})\cdot k}{0.2+0.04\omega^{2}}=0  \\
+&\implies Re\{G(j\omega)\}= \frac{0.07 \cdot 0.45k}{0.2}=0.16k \\
+& \to \text{punctul de pe axa reala din care porneste} \\
+& \text{caracteristica Nyquist cand }\omega=0 \\
+& Im\{G(j\omega)\}= \frac{0.07(-0.09\omega)\cdot k}{0.2+0.4\omega^{2}}=0 \implies \omega =0 \\
+& \lim_{ \omega \to 0 } Im\{G(j\omega)\}=\lim_{ \omega \to \infty } \frac{0.07(-0.09\omega)\cdot k}{0.02+0.04\omega^{2}}=0 \\
+& \lim_{ \omega \to \infty }  Re\{G(j\omega)\}=\lim_{ \omega \to \infty } \frac{k \cdot 0.07(0.45-0.03\omega^{2})}{0.2+0.04\omega^{2}} \\
+& = 0.07   \frac{-0.03}{0.04} = -0.05k \\
+& \to \text{punctul de pe axa reala pentru }\omega\to \infty
+\end{align}
+$$
+
+
+```tikz
+\begin{document}
+	\begin{tikzpicture}
+		\draw [thick,->] (-4,0) -- (2,0) node[above] {$Re$};
+		\draw [thick,->] (0,-2.25) -- (0,2.25) node[above] {$Im$};
+		\draw (-3,0) circle (0.05) node [above] {$-1$};
+		\draw (0.315,0) circle (0.63);
+		\draw (-0.15 ) circle (0.01) node [below left] {$-0.05k$};	
+		\draw (0.48,0) circle (0.01) node [below right] {$0.16k$};
+	\end{tikzpicture}
+\end{document}
+```
+
+
+
+$$
+\begin{align}
+& -0.05k>-1 \\
+&\implies 0.05k<1 \\
+& \implies k< \frac{1}{0.05} \\
+& \implies \begin{cases}
+k<20 \\
+k>0
+\end{cases} \\
+&\implies k \in (0;20)
+\end{align}
+$$
 
 
 ## Seminare

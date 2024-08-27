@@ -41,6 +41,12 @@ de tipul sistemului (vezi figura urmatoare) astfel:
 - Cand $\alpha=1$, curba polara tinde asimptotic la o dreapta paralela cu semiaxa imaginara negativa.
 - Cand $\alpha=2$, curba polara tinde asimptotic la o dreapta paralela cu semiaxa reala negativa.
 
-
 ![](https://youtu.be/QAfk8TuOM68?si=_PS-6peO07mVTpLb)
+
+![](https://youtu.be/tb-gcKHGtFA?si=nJmHVH4DEyBGptLt)
+
 ![](https://youtu.be/TVbiRywszco?si=YGSTnXjftx6E1sze)
+
+![](https://youtu.be/1wBlx0U9YMQ?si=3Dp2p3-jamJbkQs_)
+
+![](https://youtu.be/mzIxua0dMo8?si=dKlDu89hepk_MsQF)
